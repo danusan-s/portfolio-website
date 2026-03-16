@@ -10,7 +10,7 @@ function App() {
     <ThemeProvider defaultTheme="system">
       <div className="relative min-h-screen">
         <Navbar />
-        <main className="w-1/2 mx-auto">
+        <main>
           <HeroSection />
           <AboutSection />
           <ProjectsSection />

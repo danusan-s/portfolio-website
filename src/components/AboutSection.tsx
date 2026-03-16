@@ -3,10 +3,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 
 export function AboutSection() {
   return (
-    <SectionWrapper
-      id="about"
-      className="py-24 px-6"
-    >
+    <SectionWrapper id="about" className="py-24 px-6">
       <div className="mx-auto max-w-3xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +22,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-2 flex justify-center"
+            className="col-span-5 md:col-span-2 flex justify-center"
           >
             <div className="relative group">
               <div className="absolute -inset-1 rounded-2xl bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -43,7 +40,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 space-y-5"
+            className="col-span-5 md:col-span-3 space-y-5"
           >
             <h3 className="text-xl font-semibold text-foreground">
               Danusan Sugumar
@@ -65,6 +62,29 @@ export function AboutSection() {
                 thinking about. Thanks for stopping by!
               </p>
             </div>
+          </motion.div>
+
+          {/* Experience */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="col-span-5"
+          >
+            <h4 className="text-xl font-semibold text-foreground mb-4">
+              Experience
+            </h4>
+            <ul className="space-y-3 text-muted-foreground leading-relaxed">
+              <li>
+                <strong>System Level Test Development Intern</strong> at AMD -
+                Jun 2025 to Dec 2025
+              </li>
+              <li>
+                <strong>Teaching Assistant</strong> at National University of
+                Singapore
+              </li>
+            </ul>
           </motion.div>
         </div>
       </div>
