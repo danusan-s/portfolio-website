@@ -6,7 +6,7 @@ import type { ProjectData } from "@/components/ProjectCard";
 const projects: ProjectData[] = [
   {
     title: "Planetary Simulation",
-    image: "projects/planetary-simulation.svg",
+    image: "projects/planet.svg",
     slug: "planetary-simulation",
     description:
       "This is a planetary simulation built using C++. The project was built to help me understand the basics of physics simulations and how to implement them in code. I was inspired to build this project after I read about the n-body problem and how it is used to simulate the motion of planets in a solar system.",
@@ -58,6 +58,26 @@ const projects: ProjectData[] = [
     ],
   },
   {
+    title: "Lox interpreters",
+    image: "projects/redis.svg",
+    slug: "lox-interpreters",
+    description:
+      "This is a collection of Lox programming language interpreters built using Java and C. Lox is a simple programming language that was designed to be easy to implement. The project was built to help me understand the basics of how programming languages work and how to implement them in code. I was inspired to build this project after I read about the book 'Crafting Interpreters' by Bob Nystrom. The book walks you through the process of building a Lox interpreter in both Java and C.",
+    links: [
+      {
+        label: "Repository",
+        url: "https://github.com/danusan-s/redis-clone",
+        icon: "github",
+      },
+      {
+        label: "Build Your Own Redis",
+        url: "https://build-your-own.org/redis/",
+        icon: "book",
+      },
+    ],
+  },
+
+  {
     title: "Gossip - Web Forum",
     image: "projects/gossip.png",
     slug: "gossip-web-forum",
@@ -92,25 +112,6 @@ const projects: ProjectData[] = [
         label: "Learn OpenGL",
         url: "https://learnopengl.com/",
         icon: "book",
-      },
-    ],
-  },
-  {
-    title: "Human Benchmark Bot",
-    image: "projects/human-benchmark.svg",
-    slug: "human-benchmark-bot",
-    description:
-      "This is an old project I built after high school to brush up on my python skills. The scripts allows you to get inhuman scores on the tests available on the Human Benchmark website. This project isn't really something I would use to show off my skills but it is a fun side project that I was able to make when I had very little experience.",
-    links: [
-      {
-        label: "Repository",
-        url: "https://github.com/danusan-s/Human-Benchmark-Bot",
-        icon: "github",
-      },
-      {
-        label: "Human Benchmark",
-        url: "https://humanbenchmark.com/",
-        icon: "external",
       },
     ],
   },

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { ProjectCard } from "./ProjectCard";
 
 export function AboutSection() {
   return (
@@ -27,7 +28,7 @@ export function AboutSection() {
             <div className="relative group">
               <div className="absolute -inset-1 rounded-2xl bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <img
-                src="/me.jpg"
+                src="/danusan.jpg"
                 alt="Danusan Sugumar"
                 className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-2xl object-cover shadow-lg ring-1 ring-border transition-transform duration-500 group-hover:scale-[1.02]"
               />
@@ -85,6 +86,36 @@ export function AboutSection() {
                 Singapore
               </li>
             </ul>
+          </motion.div>
+          {/* Education */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="col-span-5"
+          >
+            <h4 className="text-xl font-semibold text-foreground mb-4">
+              Education
+            </h4>
+            <ProjectCard
+              project={{
+                title: "National University of Singapore",
+                description:
+                  "Bachelor of Engineering in Computer Engineering (2023 - 2027): Specialization in Robotics and Advanced Electronics.",
+                keyLearnings: [
+                  "Computer Architecture",
+                  "Real Time Operating Systems",
+                  "Embedded Systems",
+                  "Software Engineering",
+                  "Data Structures and Algorithms",
+                  "Artificial Neural Networks",
+                ],
+                links: [],
+                image: "nus.png",
+                slug: "nus",
+              }}
+            />
           </motion.div>
         </div>
       </div>
