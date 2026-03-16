@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IconExternalLink, IconBrandGithub, IconChevronDown, IconBook } from "@tabler/icons-react";
+import {
+  IconExternalLink,
+  IconBrandGithub,
+  IconChevronDown,
+  IconBook,
+} from "@tabler/icons-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,7 +35,10 @@ export function ProjectCard({ project }: { project: ProjectData }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <motion.div layout transition={{ layout: { duration: 0.3, ease: "easeInOut" } }}>
+    <motion.div
+      layout
+      transition={{ layout: { duration: 0.3, ease: "easeInOut" } }}
+    >
       <Card
         className="group cursor-pointer overflow-hidden transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/5"
         onClick={() => setExpanded(!expanded)}
@@ -42,7 +50,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
               <img
                 src={`/${project.image}`}
                 alt={project.title}
-                className="w-6 h-6 max-w-6 max-h-6 object-contain"
+                className="w-6 h-6 max-w-6 max-h-6 object-contain dark:filter dark:invert"
               />
             </div>
             <div className="flex-1 min-w-0">
@@ -57,10 +65,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
               animate={{ rotate: expanded ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
-              <IconChevronDown
-                size={18}
-                className="text-muted-foreground"
-              />
+              <IconChevronDown size={18} className="text-muted-foreground" />
             </motion.div>
           </div>
 

@@ -5,6 +5,20 @@ import type { ProjectData } from "@/components/ProjectCard";
 
 const projects: ProjectData[] = [
   {
+    title: "Planetary Simulation",
+    image: "projects/planetary-simulation.svg",
+    slug: "planetary-simulation",
+    description:
+      "This is a planetary simulation built using C++. The project was built to help me understand the basics of physics simulations and how to implement them in code. I was inspired to build this project after I read about the n-body problem and how it is used to simulate the motion of planets in a solar system.",
+    links: [
+      {
+        label: "Repository",
+        url: "https://github.com/danusan-s/planetary-simulation",
+        icon: "github",
+      },
+    ],
+  },
+  {
     title: "Cache Simulator",
     image: "projects/cpu.svg",
     slug: "cache-simulator",
@@ -153,7 +167,7 @@ export function ProjectsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 gap-4"
+          className="grid sm:grid-cols-1 gap-4"
         >
           {projects.map((project) => (
             <motion.div key={project.slug} variants={item}>

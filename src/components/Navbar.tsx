@@ -60,7 +60,7 @@ export function Navbar() {
             href="#home"
             className="text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            danusan
+            Danusan
           </a>
 
           {/* Desktop nav */}
