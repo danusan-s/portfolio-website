@@ -25,7 +25,7 @@ export function AboutSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="col-span-5 md:col-span-2 flex justify-center"
           >
-            <div className="relative group">
+            <div className="relative group overflow-hidden">
               <div className="absolute -inset-1 rounded-2xl bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <img
                 src="/danusan.jpg"
