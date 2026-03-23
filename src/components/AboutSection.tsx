@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import { ProjectCard } from "./ProjectCard";
 
 export function AboutSection() {
   return (
@@ -63,59 +62,6 @@ export function AboutSection() {
                 thinking about. Thanks for stopping by!
               </p>
             </div>
-          </motion.div>
-
-          {/* Experience */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="col-span-5"
-          >
-            <h4 className="text-xl font-semibold text-foreground mb-4">
-              Experience
-            </h4>
-            <ul className="space-y-3 text-muted-foreground leading-relaxed">
-              <li>
-                <strong>System Level Test Development Intern</strong> at AMD -
-                Jun 2025 to Dec 2025
-              </li>
-              <li>
-                <strong>Teaching Assistant</strong> at National University of
-                Singapore
-              </li>
-            </ul>
-          </motion.div>
-          {/* Education */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="col-span-5"
-          >
-            <h4 className="text-xl font-semibold text-foreground mb-4">
-              Education
-            </h4>
-            <ProjectCard
-              project={{
-                title: "National University of Singapore",
-                description:
-                  "Bachelor of Engineering in Computer Engineering (2023 - 2027): Specialization in Robotics and Advanced Electronics.",
-                keyLearnings: [
-                  "Computer Architecture",
-                  "Real Time Operating Systems",
-                  "Embedded Systems",
-                  "Software Engineering",
-                  "Data Structures and Algorithms",
-                  "Artificial Neural Networks",
-                ],
-                links: [],
-                image: "nus.png",
-                slug: "nus",
-              }}
-            />
           </motion.div>
         </div>
       </div>

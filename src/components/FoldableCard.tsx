@@ -16,7 +16,7 @@ interface ProjectLink {
   icon: "github" | "external" | "book";
 }
 
-export interface ProjectData {
+export interface CardData {
   title: string;
   image: string;
   slug: string;
@@ -31,7 +31,7 @@ const linkIcons = {
   book: IconBook,
 };
 
-export function ProjectCard({ project }: { project: ProjectData }) {
+export function FoldableCard({ card }: { card: CardData }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -48,14 +48,14 @@ export function ProjectCard({ project }: { project: ProjectData }) {
           <div className="flex items-center gap-4 p-5">
             <div className="shrink-0 w-10 h-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
               <img
-                src={`/${project.image}`}
-                alt={project.title}
+                src={`/${card.image}`}
+                alt={card.title}
                 className="w-6 h-6 max-w-6 max-h-6 object-contain dark:filter dark:invert"
               />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-foreground truncate">
-                {project.title}
+                {card.title}
               </h3>
               <p className="text-xs text-muted-foreground">
                 Click to {expanded ? "collapse" : "expand"}
@@ -81,16 +81,16 @@ export function ProjectCard({ project }: { project: ProjectData }) {
               >
                 <div className="px-5 pb-5 border-t border-border pt-4 space-y-4">
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {project.description}
+                    {card.description}
                   </p>
 
-                  {project.keyLearnings && project.keyLearnings.length > 0 && (
+                  {card.keyLearnings && card.keyLearnings.length > 0 && (
                     <div className="space-y-2">
                       <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
                         Key Learnings
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {project.keyLearnings.map((learning) => (
+                        {card.keyLearnings.map((learning) => (
                           <Badge
                             key={learning}
                             variant="secondary"
@@ -104,7 +104,7 @@ export function ProjectCard({ project }: { project: ProjectData }) {
                   )}
 
                   <div className="flex flex-wrap gap-2 pt-1">
-                    {project.links.map((link) => {
+                    {card.links.map((link) => {
                       const Icon = linkIcons[link.icon];
                       return (
                         <Button

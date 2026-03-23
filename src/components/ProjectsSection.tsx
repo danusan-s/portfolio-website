@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import { ProjectCard } from "@/components/ProjectCard";
-import type { ProjectData } from "@/components/ProjectCard";
+import { FoldableCard } from "@/components/FoldableCard";
+import type { CardData } from "@/components/FoldableCard";
 
-const projects: ProjectData[] = [
+const projects: CardData[] = [
   {
     title: "Planetary Simulation",
     image: "projects/planet.svg",
@@ -59,7 +59,7 @@ const projects: ProjectData[] = [
   },
   {
     title: "Lox interpreters",
-    image: "projects/redis.svg",
+    image: "projects/lox.svg",
     slug: "lox-interpreters",
     description:
       "This is a collection of Lox programming language interpreters built using Java and C. Lox is a simple programming language that was designed to be easy to implement. The project was built to help me understand the basics of how programming languages work and how to implement them in code. I was inspired to build this project after I read about the book 'Crafting Interpreters' by Bob Nystrom. The book walks you through the process of building a Lox interpreter in both Java and C.",
@@ -172,7 +172,7 @@ export function ProjectsSection() {
         >
           {projects.map((project) => (
             <motion.div key={project.slug} variants={item}>
-              <ProjectCard project={project} />
+              <FoldableCard card={project} />
             </motion.div>
           ))}
         </motion.div>
