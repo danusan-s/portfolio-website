@@ -45,7 +45,7 @@ export function FoldableCard({ card }: { card: CardData }) {
       >
         <CardContent className="p-0">
           {/* Project image + title */}
-          <div className="flex items-center gap-4 p-5">
+          <div className="flex items-center gap-4 p-5 min-w-0">
             <div className="shrink-0 w-10 h-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
               <img
                 src={`/${card.image}`}
@@ -54,7 +54,7 @@ export function FoldableCard({ card }: { card: CardData }) {
               />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-foreground truncate">
+              <h3 className="font-semibold text-foreground break-words">
                 {card.title}
               </h3>
               <p className="text-xs text-muted-foreground">
@@ -77,7 +77,6 @@ export function FoldableCard({ card }: { card: CardData }) {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
               >
                 <div className="px-5 pb-5 border-t border-border pt-4 space-y-4">
                   <p className="text-sm text-muted-foreground leading-relaxed">

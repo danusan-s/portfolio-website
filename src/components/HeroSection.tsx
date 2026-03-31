@@ -28,11 +28,6 @@ export function HeroSection() {
       id="home"
       className="relative flex items-center justify-center min-h-screen px-6 overflow-hidden"
     >
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/8 h-[800px] w-[800px] rounded-full bg-primary/20 blur-3xl" />
-      </div>
-
       <motion.div
         variants={container}
         initial="hidden"
