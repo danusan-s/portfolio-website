@@ -56,7 +56,7 @@ const item = {
 export function ExperienceSection() {
   return (
     <>
-      <SectionWrapper id="education" className="py-24 px-6">
+      <SectionWrapper id="education" className="px-6">
         <div className="mx-auto max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export function ExperienceSection() {
           </motion.div>
         </div>
       </SectionWrapper>
-      <SectionWrapper id="work" className="py-24 px-6">
+      <SectionWrapper id="work" className="py-12 px-6">
         <div className="mx-auto max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

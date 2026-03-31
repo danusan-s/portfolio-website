@@ -30,8 +30,7 @@ export function HeroSection() {
     >
       {/* Subtle gradient background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/3 h-[300px] w-[300px] rounded-full bg-primary/3 blur-3xl" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/8 h-[800px] w-[800px] rounded-full bg-primary/20 blur-3xl" />
       </div>
 
       <motion.div

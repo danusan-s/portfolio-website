@@ -5,6 +5,20 @@ import type { CardData } from "@/components/FoldableCard";
 
 const projects: CardData[] = [
   {
+    title: "ComponEng",
+    image: "projects/componeng.svg",
+    slug: "componeng",
+    description:
+      "After building projects like the planetary simulation by just hacking together code, I wanted to instead build a reusable engine that I can just plug in different projects. I set my eyes on building a Enitity-Component-System (ECS) engine. ECS is a software architectural pattern that is commonly used in game development. It is a data oriented architecture that allows for better performance (better caching) and flexibility.",
+    links: [
+      {
+        label: "Repository",
+        url: "https://github.com/danusan-s/ComponEng",
+        icon: "github",
+      },
+    ],
+  },
+  {
     title: "Planetary Simulation",
     image: "projects/planet.svg",
     slug: "planetary-simulation",
