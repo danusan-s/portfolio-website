@@ -2,10 +2,19 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { FoldableCard } from "@/components/FoldableCard";
 import type { CardData } from "@/components/FoldableCard";
+import {
+  IconCode,
+  IconCpu,
+  IconBrain,
+  IconTerminal2,
+  IconRobot,
+  IconWorldWww,
+} from "@tabler/icons-react";
 
 const skillCategories = [
   {
     category: "Languages",
+    icon: IconCode,
     skills: [
       "C++ (Proficient)",
       "C",
@@ -20,6 +29,7 @@ const skillCategories = [
   },
   {
     category: "Systems Programming",
+    icon: IconCpu,
     skills: [
       "Multithreading",
       "Lock-Free Data Structures",
@@ -30,6 +40,7 @@ const skillCategories = [
   },
   {
     category: "Machine Learning",
+    icon: IconBrain,
     skills: [
       "NumPy",
       "Pandas",
@@ -41,6 +52,7 @@ const skillCategories = [
   },
   {
     category: "Linux & Tooling",
+    icon: IconTerminal2,
     skills: [
       "Linux (Proficient)",
       "Bash Scripting",
@@ -56,6 +68,7 @@ const skillCategories = [
   },
   {
     category: "Hardware & Robotics",
+    icon: IconRobot,
     skills: [
       "ROS2",
       "SLAM",
@@ -67,6 +80,7 @@ const skillCategories = [
   },
   {
     category: "Web Development",
+    icon: IconWorldWww,
     skills: [
       "React",
       "Tailwind CSS",
@@ -318,25 +332,33 @@ export function SkillsSection() {
             viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            {skillCategories.map((group) => (
-              <motion.div key={group.category} variants={item}>
-                <div className="rounded-lg border border-border bg-card p-5 h-full">
-                  <h3 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
-                    {group.category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="inline-flex items-center rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+            {skillCategories.map((group) => {
+              const Icon = group.icon;
+              return (
+                <motion.div key={group.category} variants={item}>
+                  <div className="group rounded-lg border border-border bg-card p-5 h-full transition-all duration-300 hover:border-primary/50 hover:shadow-md hover:shadow-primary/5 hover:-translate-y-0.5 hover:border-l-2 hover:border-l-primary hover:pl-[18px]">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                        <Icon size={18} />
+                      </div>
+                      <h3 className="text-sm font-semibold text-primary tracking-wide uppercase">
+                        {group.category}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="inline-flex items-center rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
 

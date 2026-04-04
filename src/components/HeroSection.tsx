@@ -22,6 +22,49 @@ const item = {
   },
 };
 
+const shapes = [
+  {
+    shape: "circle",
+    size: 320,
+    top: "10%",
+    left: "5%",
+    duration: 20,
+    delay: 0,
+    opacity: "opacity-[0.06]",
+    color: "bg-primary",
+  },
+  {
+    shape: "square",
+    size: 200,
+    top: "60%",
+    right: "8%",
+    duration: 25,
+    delay: -5,
+    opacity: "opacity-[0.04]",
+    color: "bg-primary",
+  },
+  {
+    shape: "circle",
+    size: 160,
+    bottom: "15%",
+    left: "15%",
+    duration: 18,
+    delay: -10,
+    opacity: "opacity-[0.05]",
+    color: "bg-muted-foreground",
+  },
+  {
+    shape: "square",
+    size: 120,
+    top: "20%",
+    right: "20%",
+    duration: 22,
+    delay: -7,
+    opacity: "opacity-[0.04]",
+    color: "bg-muted-foreground",
+  },
+];
+
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -30,11 +73,38 @@ export function HeroSection() {
       id="home"
       className="relative flex items-center justify-center min-h-screen px-6 overflow-hidden"
     >
+      {/* Floating shapes */}
+      {!shouldReduceMotion &&
+        shapes.map((s, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${s.color} ${s.opacity} rounded-${s.shape === "circle" ? "full" : "2xl"} blur-xl`}
+            style={{
+              width: s.size,
+              height: s.size,
+              top: s.top,
+              left: s.left,
+              right: s.right,
+              bottom: s.bottom,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, 0],
+            }}
+            transition={{
+              duration: s.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: s.delay,
+            }}
+          />
+        ))}
+
       <motion.div
         variants={shouldReduceMotion ? undefined : container}
         initial={shouldReduceMotion ? {} : "hidden"}
         animate={shouldReduceMotion ? {} : "show"}
-        className="text-center max-w-2xl"
+        className="text-center max-w-2xl relative z-10"
       >
         <motion.p
           variants={shouldReduceMotion ? undefined : item}
@@ -51,16 +121,29 @@ export function HeroSection() {
           animate={shouldReduceMotion ? {} : "show"}
           className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6"
         >
-          Hi, I'm <span className="text-primary">Danusan</span>
+          Hi, I'm{" "}
+          <span className="text-primary relative inline-block">
+            Danusan
+            <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-primary/20 rounded-full" />
+          </span>
         </motion.h1>
 
         <motion.p
           variants={shouldReduceMotion ? undefined : item}
           initial={shouldReduceMotion ? {} : "hidden"}
           animate={shouldReduceMotion ? {} : "show"}
-          className="text-lg sm:text-xl text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl text-muted-foreground max-w-lg mx-auto mb-3 leading-relaxed"
         >
           I'm a computer engineer with a passion for building things.
+        </motion.p>
+
+        <motion.p
+          variants={shouldReduceMotion ? undefined : item}
+          initial={shouldReduceMotion ? {} : "hidden"}
+          animate={shouldReduceMotion ? {} : "show"}
+          className="text-sm text-muted-foreground/60 tracking-wide mb-10"
+        >
+          Systems Programmer · Hardware Enthusiast · Builder
         </motion.p>
 
         <motion.div
@@ -79,7 +162,7 @@ export function HeroSection() {
             </a>
           </Button>
           <Button asChild variant="outline" size="lg" className="gap-2 group">
-            <a href="#projects">
+            <a href="#skills">
               <IconFolder
                 size={18}
                 className="transition-transform group-hover:-translate-y-0.5"
