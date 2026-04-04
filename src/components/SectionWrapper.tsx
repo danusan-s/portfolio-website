@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface SectionWrapperProps {
@@ -14,18 +14,24 @@ export function SectionWrapper({
   className = "",
   delay = 0,
 }: SectionWrapperProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.section
       id={id}
       className={className}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }}
+      transition={
+        shouldReduceMotion
+          ? {}
+          : {
+              duration: 0.6,
+              delay,
+              ease: [0.21, 0.47, 0.32, 0.98],
+            }
+      }
     >
       {children}
     </motion.section>

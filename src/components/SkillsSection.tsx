@@ -3,6 +3,82 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 import { FoldableCard } from "@/components/FoldableCard";
 import type { CardData } from "@/components/FoldableCard";
 
+const skillCategories = [
+  {
+    category: "Languages",
+    skills: [
+      "C++ (Proficient)",
+      "C",
+      "Java",
+      "Go",
+      "Python",
+      "TypeScript",
+      "ARM Assembly",
+      "Verilog",
+      "GLSL",
+    ],
+  },
+  {
+    category: "Systems Programming",
+    skills: [
+      "Multithreading",
+      "Lock-Free Data Structures",
+      "Memory Optimization",
+      "Network Programming",
+      "TCP/UDP Protocols",
+    ],
+  },
+  {
+    category: "Machine Learning",
+    skills: [
+      "NumPy",
+      "Pandas",
+      "TensorFlow",
+      "Scikit-learn",
+      "Matplotlib",
+      "Data Analysis",
+    ],
+  },
+  {
+    category: "Linux & Tooling",
+    skills: [
+      "Linux (Proficient)",
+      "Bash Scripting",
+      "tmux",
+      "Vim",
+      "GDB",
+      "perf",
+      "CMake",
+      "Make",
+      "Git",
+      "Docker",
+    ],
+  },
+  {
+    category: "Hardware & Robotics",
+    skills: [
+      "ROS2",
+      "SLAM",
+      "ESP32",
+      "Embedded Systems",
+      "Microcontrollers",
+      "Sensors & Actuators",
+    ],
+  },
+  {
+    category: "Web Development",
+    skills: [
+      "React",
+      "Tailwind CSS",
+      "Go",
+      "Node.js",
+      "MySQL",
+      "REST APIs",
+      "Azure",
+    ],
+  },
+];
+
 const projects: CardData[] = [
   {
     title: "ComponEng",
@@ -10,6 +86,12 @@ const projects: CardData[] = [
     slug: "componeng",
     description:
       "After building projects like the planetary simulation by just hacking together code, I wanted to instead build a reusable engine that I can just plug in different projects. I set my eyes on building a Enitity-Component-System (ECS) engine. ECS is a software architectural pattern that is commonly used in game development. It is a data oriented architecture that allows for better performance (better caching) and flexibility.",
+    keyLearnings: [
+      "Entity-Component-System architecture",
+      "Data-oriented design",
+      "C++ memory management",
+      "Cache-friendly data structures",
+    ],
     links: [
       {
         label: "Repository",
@@ -24,6 +106,12 @@ const projects: CardData[] = [
     slug: "planetary-simulation",
     description:
       "This is a planetary simulation built using C++. The project was built to help me understand the basics of physics simulations and how to implement them in code. I was inspired to build this project after I read about the n-body problem and how it is used to simulate the motion of planets in a solar system.",
+    keyLearnings: [
+      "N-body physics simulation",
+      "Numerical integration methods",
+      "Real-time rendering with C++",
+      "Performance optimization",
+    ],
     links: [
       {
         label: "Repository",
@@ -38,6 +126,12 @@ const projects: CardData[] = [
     slug: "cache-simulator",
     description:
       "This is a cache simulator built using C++. The project was built to help me understand the intricacies of how caches work. I was inspired to build this project after I read about the layers of caches in the modern CPU architecture. I wanted to build a simulator that would allow me to visualize how caches work and how they affect the performance of a CPU.",
+    keyLearnings: [
+      "CPU cache hierarchy",
+      "Cache replacement policies",
+      "Memory access patterns",
+      "Performance analysis",
+    ],
     links: [
       {
         label: "Repository",
@@ -77,26 +171,37 @@ const projects: CardData[] = [
     slug: "lox-interpreters",
     description:
       "This is a collection of Lox programming language interpreters built using Java and C. Lox is a simple programming language that was designed to be easy to implement. The project was built to help me understand the basics of how programming languages work and how to implement them in code. I was inspired to build this project after I read about the book 'Crafting Interpreters' by Bob Nystrom. The book walks you through the process of building a Lox interpreter in both Java and C.",
+    keyLearnings: [
+      "Lexical analysis and parsing",
+      "Abstract syntax trees",
+      "Tree-walk interpreters",
+      "Bytecode compilation",
+    ],
     links: [
       {
         label: "Repository",
-        url: "https://github.com/danusan-s/redis-clone",
+        url: "https://github.com/danusan-s/lox-interpreters",
         icon: "github",
       },
       {
-        label: "Build Your Own Redis",
-        url: "https://build-your-own.org/redis/",
+        label: "Crafting Interpreters",
+        url: "https://craftinginterpreters.com/",
         icon: "book",
       },
     ],
   },
-
   {
     title: "Gossip - Web Forum",
     image: "projects/gossip.png",
     slug: "gossip-web-forum",
     description:
       "This is a web forum built using React + TypeScript frontend and a Go + MySQL + Azure backend. The project was built as a submission for CVWO. It helped me learn the basics of web development and how to build a full stack application. For the UI, I used Material UI (MUI) and netlify to host the frontend.",
+    keyLearnings: [
+      "Full-stack web development",
+      "REST API design with Go",
+      "Database schema design",
+      "Authentication and authorization",
+    ],
     links: [
       {
         label: "Repository",
@@ -116,6 +221,12 @@ const projects: CardData[] = [
     slug: "chess-render-opengl",
     description:
       "This is a chess GUI written in C++ using OpenGL. The project was made to learn the basics of OpenGL and the graphics pipeline. Initially, this project started out as a CLI chess game written in C++ but then I decided I should build on top of it. So I started looking at designing either a chess engine or a chess GUI. I found that I could make my GUI with a game engine like unity. But this sort of led me down a rabbit hole of how game engines work and how they render graphics. This is when I discovered OpenGL.",
+    keyLearnings: [
+      "OpenGL graphics pipeline",
+      "3D rendering fundamentals",
+      "Game loop architecture",
+      "Shader programming",
+    ],
     links: [
       {
         label: "Repository",
@@ -136,12 +247,31 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] as const },
+  },
+};
+
+const projectContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const projectItem = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
@@ -150,9 +280,9 @@ const item = {
   },
 };
 
-export function ProjectsSection() {
+export function SkillsSection() {
   return (
-    <SectionWrapper id="projects" className="py-24 px-6">
+    <SectionWrapper id="skills" className="py-24 px-6">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -162,10 +292,10 @@ export function ProjectsSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-            Projects
+            Skills
           </h2>
           <p className="text-muted-foreground">
-            These are some of my software projects.{" "}
+            Skills I have picked up and projects I have built.{" "}
             <a
               href="https://github.com/danusan-s"
               target="_blank"
@@ -177,19 +307,57 @@ export function ProjectsSection() {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-1 gap-4"
-        >
-          {projects.map((project) => (
-            <motion.div key={project.slug} variants={item}>
-              <FoldableCard card={project} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="mb-16">
+          <h3 className="text-lg font-semibold text-foreground mb-5">
+            Skills & Technologies
+          </h3>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
+            {skillCategories.map((group) => (
+              <motion.div key={group.category} variants={item}>
+                <div className="rounded-lg border border-border bg-card p-5 h-full">
+                  <h3 className="text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
+                    {group.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="inline-flex items-center rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-5">
+            Projects
+          </h3>
+          <motion.div
+            variants={projectContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid sm:grid-cols-1 gap-4"
+          >
+            {projects.map((project) => (
+              <motion.div key={project.slug} variants={projectItem}>
+                <FoldableCard card={project} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </SectionWrapper>
   );

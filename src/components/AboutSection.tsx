@@ -40,22 +40,18 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="col-span-5 md:col-span-3 space-y-5"
+            className="col-span-5 md:col-span-3 space-y-4"
           >
-            <h3 className="text-xl font-semibold text-foreground">
-              Danusan Sugumar
-            </h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Hey there! I'm Danusan -- a Computer Engineering undergrad with
-                a passion for building things that are fast, beautiful, and
-                meaningful. Whether it's tinkering with embedded systems or
-                crafting web apps, I love connecting the dots between hardware
-                and software.
+                Computer Engineering undergrad with a passion for building things
+                that are fast, beautiful, and meaningful. Whether it's tinkering
+                with embedded systems or crafting web apps, I love connecting the
+                dots between hardware and software.
               </p>
               <p>
-                I enjoy learning by building and believe the best ideas come
-                from curiosity.
+                I enjoy learning by building and believe the best ideas come from
+                curiosity.
               </p>
               <p>
                 This site is a small collection of what I'm working on and
