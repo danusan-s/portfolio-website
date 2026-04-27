@@ -115,6 +115,26 @@ const projects: CardData[] = [
     ],
   },
   {
+    title: "Quasai",
+    image: "projects/quasai.svg",
+    slug: "quasai",
+    description:
+      "Quasai is a machine learning framework built using C++. The project was built to help me understand the basics of how machine learning frameworks work and how to implement them in code. I was inspired to build this project after I read about how machine learning frameworks like TensorFlow and PyTorch work under the hood. I wanted to build a simple machine learning framework from scratch to understand the core concepts and algorithms that power these frameworks.",
+    keyLearnings: [
+      "Automatic differentiation",
+      "Tensor operations and optimizations",
+      "Neural network architectures",
+      "Training algorithms and optimizers",
+    ],
+    links: [
+      {
+        label: "Repository",
+        url: "https://github.com/danusan-s/Quasai",
+        icon: "github",
+      },
+    ],
+  },
+  {
     title: "Planetary Simulation",
     image: "projects/planet.svg",
     slug: "planetary-simulation",

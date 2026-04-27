@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { IconUser, IconFolder } from "@tabler/icons-react";
 
@@ -22,103 +23,73 @@ const item = {
   },
 };
 
-const shapes = [
-  {
-    shape: "circle",
-    size: 320,
-    top: "10%",
-    left: "5%",
-    duration: 20,
-    delay: 0,
-    opacity: "opacity-[0.06]",
-    color: "bg-primary",
-  },
-  {
-    shape: "square",
-    size: 200,
-    top: "60%",
-    right: "8%",
-    duration: 25,
-    delay: -5,
-    opacity: "opacity-[0.04]",
-    color: "bg-primary",
-  },
-  {
-    shape: "circle",
-    size: 160,
-    bottom: "15%",
-    left: "15%",
-    duration: 18,
-    delay: -10,
-    opacity: "opacity-[0.05]",
-    color: "bg-muted-foreground",
-  },
-  {
-    shape: "square",
-    size: 120,
-    top: "20%",
-    right: "20%",
-    duration: 22,
-    delay: -7,
-    opacity: "opacity-[0.04]",
-    color: "bg-muted-foreground",
-  },
-];
+const tagline = "Systems Programmer · Hardware Enthusiast · Builder";
+
+function TypewriterText({ text, delay }: { text: string; delay: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          setDisplayed(text.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(interval);
+          setDone(true);
+        }
+      }, 50);
+      return () => clearInterval(interval);
+    }, delay);
+    return () => clearTimeout(startTimeout);
+  }, [text, delay]);
+
+  useEffect(() => {
+    if (!done) return;
+    const blink = setInterval(() => setShowCursor((p) => !p), 530);
+    const stop = setTimeout(() => clearInterval(blink), 2000);
+    return () => {
+      clearInterval(blink);
+      clearTimeout(stop);
+    };
+  }, [done]);
+
+  return (
+    <span>
+      {displayed}
+      <span
+        className={`inline-block w-[2px] h-[1.1em] bg-primary/60 ml-0.5 align-middle ${
+          showCursor ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </span>
+  );
+}
 
 export function HeroSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section
       id="home"
       className="relative flex items-center justify-center min-h-screen px-6 overflow-hidden"
     >
-      {/* Floating shapes */}
-      {!shouldReduceMotion &&
-        shapes.map((s, i) => (
-          <motion.div
-            key={i}
-            className={`absolute ${s.color} ${s.opacity} rounded-${s.shape === "circle" ? "full" : "2xl"} blur-xl`}
-            style={{
-              width: s.size,
-              height: s.size,
-              top: s.top,
-              left: s.left,
-              right: s.right,
-              bottom: s.bottom,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, 15, 0],
-            }}
-            transition={{
-              duration: s.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: s.delay,
-            }}
-          />
-        ))}
-
       <motion.div
-        variants={shouldReduceMotion ? undefined : container}
-        initial={shouldReduceMotion ? {} : "hidden"}
-        animate={shouldReduceMotion ? {} : "show"}
+        variants={container}
+        initial="hidden"
+        animate="show"
         className="text-center max-w-2xl relative z-10"
       >
         <motion.p
-          variants={shouldReduceMotion ? undefined : item}
-          initial={shouldReduceMotion ? {} : "hidden"}
-          animate={shouldReduceMotion ? {} : "show"}
+          variants={item}
           className="text-sm uppercase tracking-widest text-muted-foreground mb-4"
         >
           Welcome
         </motion.p>
 
         <motion.h1
-          variants={shouldReduceMotion ? undefined : item}
-          initial={shouldReduceMotion ? {} : "hidden"}
-          animate={shouldReduceMotion ? {} : "show"}
+          variants={item}
           className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6"
         >
           Hi, I'm{" "}
@@ -129,27 +100,21 @@ export function HeroSection() {
         </motion.h1>
 
         <motion.p
-          variants={shouldReduceMotion ? undefined : item}
-          initial={shouldReduceMotion ? {} : "hidden"}
-          animate={shouldReduceMotion ? {} : "show"}
+          variants={item}
           className="text-lg sm:text-xl text-muted-foreground max-w-lg mx-auto mb-3 leading-relaxed"
         >
           I'm a computer engineer with a passion for building things.
         </motion.p>
 
-        <motion.p
-          variants={shouldReduceMotion ? undefined : item}
-          initial={shouldReduceMotion ? {} : "hidden"}
-          animate={shouldReduceMotion ? {} : "show"}
-          className="text-sm text-muted-foreground/60 tracking-wide mb-10"
+        <motion.div
+          variants={item}
+          className="text-sm text-muted-foreground/60 tracking-wide mb-10 min-h-[1.25rem]"
         >
-          Systems Programmer · Hardware Enthusiast · Builder
-        </motion.p>
+          <TypewriterText text={tagline} delay={1200} />
+        </motion.div>
 
         <motion.div
-          variants={shouldReduceMotion ? undefined : item}
-          initial={shouldReduceMotion ? {} : "hidden"}
-          animate={shouldReduceMotion ? {} : "show"}
+          variants={item}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           <Button asChild size="lg" className="gap-2 group">
@@ -172,26 +137,24 @@ export function HeroSection() {
           </Button>
         </motion.div>
 
-        {!shouldReduceMotion && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="mt-16"
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="mt-16"
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="mx-auto w-5 h-8 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1"
           >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="mx-auto w-5 h-8 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1"
-            >
-              <motion.div className="w-1 h-2 rounded-full bg-muted-foreground/50" />
-            </motion.div>
+            <motion.div className="w-1 h-2 rounded-full bg-muted-foreground/50" />
           </motion.div>
-        )}
+        </motion.div>
       </motion.div>
     </section>
   );
