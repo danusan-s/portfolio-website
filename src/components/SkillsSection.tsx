@@ -1,7 +1,10 @@
-import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { FoldableCard } from "@/components/FoldableCard";
 import type { CardData } from "@/components/FoldableCard";
+import { useRepoUpdatedLabels } from "@/hooks/useRepoUpdated";
+import { Button } from "@/components/ui/button";
 import {
   IconCode,
   IconCpu,
@@ -9,6 +12,7 @@ import {
   IconTerminal2,
   IconRobot,
   IconWorldWww,
+  IconChevronDown,
 } from "@tabler/icons-react";
 
 const skillCategories = [
@@ -95,9 +99,31 @@ const skillCategories = [
 
 const projects: CardData[] = [
   {
+    title: "ExchEng",
+    image: "projects/excheng.svg",
+    slug: "excheng",
+    repo: "danusan-s/ExchEng",
+    description:
+      "A C++ trading exchange engine built while following Saurav Ghosh's Low Latency Applications in C++, exploring lock-free programming, concurrency, and low-latency trading systems. The exchange side runs 4 threads (matching engine with the order book, order gateway with FIFO sequencing, market data publisher over multicast, and snapshot publisher), communicating through single-producer single-consumer lock-free queues, each with its own logger thread.",
+    keyLearnings: [
+      "Lock-free queues (SPSC)",
+      "Matching engine & order book",
+      "Multicast market data",
+      "Low-latency C++",
+    ],
+    links: [
+      {
+        label: "Repository",
+        url: "https://github.com/danusan-s/ExchEng",
+        icon: "github",
+      },
+    ],
+  },
+  {
     title: "ComponEng",
     image: "projects/componeng.svg",
     slug: "componeng",
+    repo: "danusan-s/ComponEng",
     description:
       "After building projects like the planetary simulation by just hacking together code, I wanted to instead build a reusable engine that I can just plug in different projects. I set my eyes on building a Enitity-Component-System (ECS) engine. ECS is a software architectural pattern that is commonly used in game development. It is a data oriented architecture that allows for better performance (better caching) and flexibility.",
     keyLearnings: [
@@ -118,6 +144,7 @@ const projects: CardData[] = [
     title: "Quasai",
     image: "projects/quasai.svg",
     slug: "quasai",
+    repo: "danusan-s/Quasai",
     description:
       "Quasai is a machine learning framework built using C++. The project was built to help me understand the basics of how machine learning frameworks work and how to implement them in code. I was inspired to build this project after I read about how machine learning frameworks like TensorFlow and PyTorch work under the hood. I wanted to build a simple machine learning framework from scratch to understand the core concepts and algorithms that power these frameworks.",
     keyLearnings: [
@@ -138,6 +165,7 @@ const projects: CardData[] = [
     title: "Planetary Simulation",
     image: "projects/planet.svg",
     slug: "planetary-simulation",
+    repo: "danusan-s/planetary-simulation",
     description:
       "This is a planetary simulation built using C++. The project was built to help me understand the basics of physics simulations and how to implement them in code. I was inspired to build this project after I read about the n-body problem and how it is used to simulate the motion of planets in a solar system.",
     keyLearnings: [
@@ -158,6 +186,7 @@ const projects: CardData[] = [
     title: "Cache Simulator",
     image: "projects/cpu.svg",
     slug: "cache-simulator",
+    repo: "danusan-s/cache-sim",
     description:
       "This is a cache simulator built using C++. The project was built to help me understand the intricacies of how caches work. I was inspired to build this project after I read about the layers of caches in the modern CPU architecture. I wanted to build a simulator that would allow me to visualize how caches work and how they affect the performance of a CPU.",
     keyLearnings: [
@@ -178,6 +207,7 @@ const projects: CardData[] = [
     title: "Redis Clone",
     image: "projects/redis.svg",
     slug: "redis-clone",
+    repo: "danusan-s/redis-clone",
     description:
       "This is a Redis clone built using C++. Redis is an in-memory database that can be hosted on servers and requests can be made through a TCP socket. I came across Redis while I was looking through the tech stack breakdown of major companies. Redis is often used as a caching layer to speed up database queries. I thought it would be a fun project to build a Redis clone from scratch.",
     keyLearnings: [
@@ -203,6 +233,7 @@ const projects: CardData[] = [
     title: "Lox interpreters",
     image: "projects/lox.svg",
     slug: "lox-interpreters",
+    repo: "danusan-s/lox-interpreters",
     description:
       "This is a collection of Lox programming language interpreters built using Java and C. Lox is a simple programming language that was designed to be easy to implement. The project was built to help me understand the basics of how programming languages work and how to implement them in code. I was inspired to build this project after I read about the book 'Crafting Interpreters' by Bob Nystrom. The book walks you through the process of building a Lox interpreter in both Java and C.",
     keyLearnings: [
@@ -228,6 +259,7 @@ const projects: CardData[] = [
     title: "Gossip - Web Forum",
     image: "projects/gossip.png",
     slug: "gossip-web-forum",
+    repo: "danusan-s/gossip",
     description:
       "This is a web forum built using React + TypeScript frontend and a Go + MySQL + Azure backend. The project was built as a submission for CVWO. It helped me learn the basics of web development and how to build a full stack application. For the UI, I used Material UI (MUI) and netlify to host the frontend.",
     keyLearnings: [
@@ -253,6 +285,7 @@ const projects: CardData[] = [
     title: "Chess Render - OpenGL",
     image: "projects/chess.svg",
     slug: "chess-render-opengl",
+    repo: "danusan-s/Chess-Render-with-OpenGL",
     description:
       "This is a chess GUI written in C++ using OpenGL. The project was made to learn the basics of OpenGL and the graphics pipeline. Initially, this project started out as a CLI chess game written in C++ but then I decided I should build on top of it. So I started looking at designing either a chess engine or a chess GUI. I found that I could make my GUI with a game engine like unity. But this sort of led me down a rabbit hole of how game engines work and how they render graphics. This is when I discovered OpenGL.",
     keyLearnings: [
@@ -275,6 +308,16 @@ const projects: CardData[] = [
     ],
   },
 ];
+
+const featuredSlugs = ["excheng", "componeng", "quasai", "lox-interpreters"];
+
+const featuredProjects: CardData[] = featuredSlugs
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is CardData => p !== undefined);
+
+const otherProjects: CardData[] = projects.filter(
+  (p) => !featuredSlugs.includes(p.slug)
+);
 
 const container = {
   hidden: { opacity: 0 },
@@ -315,6 +358,16 @@ const projectItem = {
 };
 
 export function SkillsSection() {
+  const [showAll, setShowAll] = useState(false);
+  const repos = useMemo(
+    () =>
+      projects
+        .map((p) => p.repo)
+        .filter((r): r is string => typeof r === "string"),
+    []
+  );
+  const updatedLabels = useRepoUpdatedLabels(repos);
+
   return (
     <SectionWrapper id="skills" className="py-24 px-6">
       <div className="mx-auto max-w-3xl">
@@ -393,12 +446,68 @@ export function SkillsSection() {
             viewport={{ once: true, margin: "-50px" }}
             className="grid sm:grid-cols-1 gap-4"
           >
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <motion.div key={project.slug} variants={projectItem}>
-                <FoldableCard card={project} />
+                <FoldableCard
+                  card={project}
+                  updatedLabel={
+                    project.repo ? updatedLabels[project.repo] : undefined
+                  }
+                />
               </motion.div>
             ))}
           </motion.div>
+
+          <AnimatePresence initial={false}>
+            {showAll && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <motion.div
+                  variants={projectContainer}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="grid sm:grid-cols-1 gap-4 mt-4"
+                >
+                  {otherProjects.map((project) => (
+                    <motion.div key={project.slug} variants={projectItem}>
+                      <FoldableCard
+                        card={project}
+                        updatedLabel={
+                          project.repo ? updatedLabels[project.repo] : undefined
+                        }
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="flex justify-center mt-6">
+            <Button
+              variant="outline"
+              onClick={() => setShowAll((v) => !v)}
+              className="gap-2"
+              aria-expanded={showAll}
+            >
+              {showAll
+                ? "Show less"
+                : `View more (${otherProjects.length} more)`}
+              <motion.span
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex"
+              >
+                <IconChevronDown size={16} />
+              </motion.span>
+            </Button>
+          </div>
         </div>
       </div>
     </SectionWrapper>

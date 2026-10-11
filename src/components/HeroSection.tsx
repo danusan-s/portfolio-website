@@ -23,7 +23,7 @@ const item = {
   },
 };
 
-const tagline = "Systems Programmer · Hardware Enthusiast · Builder";
+const tagline = "Systems Programmer | Backend Developer";
 
 function TypewriterText({ text, delay }: { text: string; delay: number }) {
   const [displayed, setDisplayed] = useState("");

@@ -22,9 +22,24 @@ const education: CardData[] = [
 
 const workExperience: CardData[] = [
   {
+    title: "Shopee - Backend Engineering Intern (Marketplace Promotion)",
+    image: "shopee.svg",
+    slug: "shopee-marketplace-promotion",
+    description:
+      "Backend Engineering Intern on the Marketplace Promotion team (Jun 2026 - Nov 2026), working with Go microservices. Built AI Dev-on-Duty (DoD) tooling to help AI run root-cause analysis (RCA) on support tickets, and worked on tickets spanning migrations, cleanup, and latency improvements — including cutting Ops Mass Search time by 3x. Also contributed to AI Code Review tooling.",
+    keyLearnings: [
+      "Go concurrency",
+      "Microservices",
+      "Latency optimization (3x on Ops Mass Search)",
+      "AI-assisted RCA and code review",
+      "Internal tooling",
+    ],
+    links: [],
+  },
+  {
     title:
       "Advanced Microelectronic Devices Inc. (AMD) - System Level Test Development Intern",
-    image: "amd.png",
+    image: "amd.svg",
     slug: "amd-internship",
     description:
       "During my internship at AMD, I worked with the team responsible for writing system level tests for AMD Instinct GPUs (AMD's data center gpu lineup). I worked on automation tools in python to help with generation of clean styled and presentable excel reports given the run data files as input. Furthermore, I helped refactor and rollout the next generation of the test framework written in Java. I also had the opportunity to work on some of the system level tests and got to see how the tests are run in the lab and how the data is collected and analyzed.",

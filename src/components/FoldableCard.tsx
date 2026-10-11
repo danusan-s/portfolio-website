@@ -23,6 +23,8 @@ export interface CardData {
   description: string;
   links: ProjectLink[];
   keyLearnings?: string[];
+  /** GitHub "owner/repo" used for the live "updated xxx ago" label. */
+  repo?: string;
 }
 
 const linkIcons = {
@@ -31,7 +33,13 @@ const linkIcons = {
   book: IconBook,
 };
 
-export function FoldableCard({ card }: { card: CardData }) {
+export function FoldableCard({
+  card,
+  updatedLabel,
+}: {
+  card: CardData;
+  updatedLabel?: string;
+}) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -56,6 +64,11 @@ export function FoldableCard({ card }: { card: CardData }) {
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-foreground break-words">
                 {card.title}
+                {updatedLabel && (
+                  <span className="ml-2 text-xs font-normal text-muted-foreground whitespace-nowrap">
+                    (updated {updatedLabel})
+                  </span>
+                )}
               </h3>
               <p className="text-xs text-muted-foreground">
                 Click to {expanded ? "collapse" : "expand"}
