@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const CACHE_KEY = "repo-push-times-v1";
-const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+const CACHE_TTL_MS = 1 * 60 * 60 * 1000; // 1 hours
 
 interface CacheEntry {
   pushedAt: string;
@@ -88,7 +88,7 @@ export function useRepoUpdatedLabels(repos: string[]): Record<string, string> {
         } catch {
           // offline or rate-limited: keep stale/absent value
         }
-      })
+      }),
     ).then(() => {
       if (cancelled) return;
       writeCache(cache);
