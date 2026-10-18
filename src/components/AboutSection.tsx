@@ -44,14 +44,14 @@ export function AboutSection() {
           >
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Computer Engineering undergrad with a passion for building things
-                that are fast, beautiful, and meaningful. Whether it's tinkering
-                with embedded systems or crafting web apps, I love connecting the
-                dots between hardware and software.
+                Computer Engineering undergrad with a passion for building
+                things that are fast, beautiful, and meaningful. I love
+                tinkering with code and exploring vastly different areas of tech
+                (A jack of all trades, master of some).
               </p>
               <p>
-                I enjoy learning by building and believe the best ideas come from
-                curiosity.
+                I enjoy learning by building and believe the best ideas come
+                from curiosity.
               </p>
               <p>
                 This site is a small collection of what I'm working on and
